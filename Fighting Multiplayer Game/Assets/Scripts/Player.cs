@@ -55,7 +55,6 @@ public class Player : MonoBehaviour
             if (isGrounded && Input.GetButtonDown("Jump"))
             {
                 velocity.y += Mathf.Sqrt(jumpHeight * -2 * gravity);
-                print("jumped");
             }
 
             if (Input.GetMouseButtonDown(0))
@@ -68,7 +67,7 @@ public class Player : MonoBehaviour
             anim.SetFloat("speed", horizontalInput);
             anim.SetFloat("verticalSpeed", velocity.y);
             anim.SetBool("isGrounded", isGrounded);
-            anim.SetBool("isMoving", horizontalInput != 0 ? true : false);
+            anim.SetBool("isMoving", horizontalInput != 0);
         }
     }
 
