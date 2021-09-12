@@ -3,5 +3,5 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
-    public Text HPText;
+    public Text HPTextLeft, HPTextRight;
 }

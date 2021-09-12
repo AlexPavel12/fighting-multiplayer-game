@@ -822,7 +822,8 @@ MonoBehaviour:
   speed: 30
   jumpHeight: 15
   gravity: -100
-  attackRange: 0.5
+  attackRange: 2
+  left: 0
 --- !u!95 &6422192378125802864
 Animator:
   serializedVersion: 3

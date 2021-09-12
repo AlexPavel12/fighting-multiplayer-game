@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 
 public class Player : MonoBehaviour
@@ -16,13 +17,15 @@ public class Player : MonoBehaviour
 
     private bool isGrounded;
 
+    [SerializeField] private Text HPText;
+
     private int hp;
 
     public int HP
     {
         get { return hp; }
         set { hp = value;
-            FindObjectOfType<UI>().HPText.text = value.ToString();
+            HPText.text = value.ToString();
         }
     }
 
@@ -30,8 +33,16 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        HP = 100;
         view = GetComponent<PhotonView>();
+        if (PhotonNetwork.PlayerList.Length == 1)
+        {
+            HPText = FindObjectOfType<UI>().HPTextLeft;
+        }
+        else
+        {
+            HPText = FindObjectOfType<UI>().HPTextRight;
+        }
+        HP = 100;
     }
 
     private void Update()
