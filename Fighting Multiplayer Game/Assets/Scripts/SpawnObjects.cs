@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class SpawnPlayers : MonoBehaviour
+public class SpawnObjects : MonoBehaviour
 {
     public GameObject playerPrefab;
 
