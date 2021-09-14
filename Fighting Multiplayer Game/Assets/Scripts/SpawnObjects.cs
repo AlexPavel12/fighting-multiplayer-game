@@ -8,7 +8,6 @@ public class SpawnObjects : MonoBehaviour
 {
     [SerializeField] private Text HPTextLeft, HPTextRight;
     public GameObject playerPrefab;
-    private GameObject playerOne, playerTwo;
 
     public Vector3 playerSpawnPositionLeft, playerSpawnPositionRight;
     public Vector3 playerSpawnRotationLeft, playerSpawnRotationRight;
@@ -17,11 +16,13 @@ public class SpawnObjects : MonoBehaviour
     {
         if (PhotonNetwork.PlayerList.Length == 1)
         {
-            PhotonNetwork.Instantiate(playerPrefab.name, playerSpawnPositionLeft, Quaternion.Euler(playerSpawnRotationLeft));
+            GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, playerSpawnPositionLeft, Quaternion.Euler(playerSpawnRotationLeft));
+            player.GetComponent<PhotonView>().RPC("SetHPText", RpcTarget.AllBuffered, HPTextLeft.name);
         }
         else
         {
-            PhotonNetwork.Instantiate(playerPrefab.name, playerSpawnPositionRight, Quaternion.Euler(playerSpawnRotationRight));
+            GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, playerSpawnPositionRight, Quaternion.Euler(playerSpawnRotationRight));
+            player.GetComponent<PhotonView>().RPC("SetHPText", RpcTarget.All, HPTextRight.name);
         }
     }
 }

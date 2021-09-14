@@ -819,12 +819,14 @@ MonoBehaviour:
   controller: {fileID: 6422192378125802766}
   anim: {fileID: 6422192378125802864}
   attackPoint: {fileID: 6422192379310609298}
-  HPText: {fileID: 0}
+  HPText: 
+  HPTextObject: {fileID: 0}
   speed: 30
   jumpHeight: 15
   gravity: -100
-  attackRange: 2
+  attackRange: 2.45
   HP: 0
+  view: {fileID: 2031230331698528557}
 --- !u!95 &6422192378125802864
 Animator:
   serializedVersion: 3

@@ -8,7 +8,8 @@ public class Player : MonoBehaviour
     [SerializeField] private CharacterController controller;
     [SerializeField] private Animator anim;
     [SerializeField] private Transform attackPoint;
-    public Text HPText;
+    public string HPText;
+    public Text HPTextObject;
     private int attackDamage = 20;
 
     [SerializeField] private float speed, jumpHeight, gravity, attackRange;
@@ -20,11 +21,10 @@ public class Player : MonoBehaviour
 
     public int HP;
 
-    PhotonView view;
+    [SerializeField] PhotonView view;
 
     private void Start()
     {
-        view = GetComponent<PhotonView>();
         HP = 100;
     }
 
@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
         foreach (Collider enemy in hitEnemies)
         {
             print("hit " + enemy.name);
-            enemy.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, 20);
+            enemy.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, attackDamage);
         }
     }
 
@@ -81,8 +81,21 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage)
     {
         HP -= damage;
-        HPText.text = HP.ToString();
+        HPTextObject.text = HP.ToString();
         print(HP);
+    }
+
+    [PunRPC]
+    public void SetHPText(string TextName)
+    {
+        if (TextName == FindObjectOfType<UI>().HPTextLeft.name)
+        {
+            HPTextObject = FindObjectOfType<UI>().HPTextLeft;
+        }
+        else
+        {
+            HPTextObject = FindObjectOfType<UI>().HPTextRight;
+        }
     }
 
     private void OnDrawGizmosSelected()
