@@ -819,10 +819,12 @@ MonoBehaviour:
   controller: {fileID: 6422192378125802766}
   anim: {fileID: 6422192378125802864}
   attackPoint: {fileID: 6422192379310609298}
+  HPText: {fileID: 0}
   speed: 30
   jumpHeight: 15
   gravity: -100
   attackRange: 2
+  HP: 0
 --- !u!95 &6422192378125802864
 Animator:
   serializedVersion: 3
@@ -941,13 +943,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6422192379310609298}
+  - component: {fileID: 1239097181}
   m_Layer: 0
   m_Name: AttackPoint
-  m_TagString: Untagged
+  m_TagString: AttackPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6422192379310609298
 Transform:
   m_ObjectHideFlags: 0
@@ -962,6 +965,19 @@ Transform:
   m_Father: {fileID: 6422192378125802865}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1239097181
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6422192379310609299}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6954669290460497880
 GameObject:
   m_ObjectHideFlags: 0

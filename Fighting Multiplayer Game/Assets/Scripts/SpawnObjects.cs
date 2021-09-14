@@ -6,7 +6,9 @@ using Photon.Pun;
 
 public class SpawnObjects : MonoBehaviour
 {
+    [SerializeField] private Text HPTextLeft, HPTextRight;
     public GameObject playerPrefab;
+    private GameObject playerOne, playerTwo;
 
     public Vector3 playerSpawnPositionLeft, playerSpawnPositionRight;
     public Vector3 playerSpawnRotationLeft, playerSpawnRotationRight;
@@ -15,7 +17,7 @@ public class SpawnObjects : MonoBehaviour
     {
         if (PhotonNetwork.PlayerList.Length == 1)
         {
-            GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, playerSpawnPositionLeft, Quaternion.Euler(playerSpawnRotationLeft));
+            PhotonNetwork.Instantiate(playerPrefab.name, playerSpawnPositionLeft, Quaternion.Euler(playerSpawnRotationLeft));
         }
         else
         {

@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] private CharacterController controller;
     [SerializeField] private Animator anim;
     [SerializeField] private Transform attackPoint;
+    public Text HPText;
     private int attackDamage = 20;
 
     [SerializeField] private float speed, jumpHeight, gravity, attackRange;
@@ -17,15 +18,14 @@ public class Player : MonoBehaviour
 
     private bool isGrounded;
 
+    public int HP;
+
     PhotonView view;
 
     private void Start()
     {
         view = GetComponent<PhotonView>();
-        if(PhotonNetwork.PlayerList.Length == 1)
-        {
-
-        }
+        HP = 100;
     }
 
     private void Update()
@@ -56,6 +56,7 @@ public class Player : MonoBehaviour
                 anim.SetTrigger("punch");
                 Attack();
             }
+
             controller.Move(Time.deltaTime * velocity);
 
             anim.SetFloat("speed", horizontalInput);
@@ -72,7 +73,16 @@ public class Player : MonoBehaviour
         foreach (Collider enemy in hitEnemies)
         {
             print("hit " + enemy.name);
+            enemy.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, 20);
         }
+    }
+
+    [PunRPC]
+    public void TakeDamage(int damage)
+    {
+        HP -= damage;
+        HPText.text = HP.ToString();
+        print(HP);
     }
 
     private void OnDrawGizmosSelected()
