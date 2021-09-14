@@ -823,7 +823,6 @@ MonoBehaviour:
   jumpHeight: 15
   gravity: -100
   attackRange: 2
-  left: 0
 --- !u!95 &6422192378125802864
 Animator:
   serializedVersion: 3

@@ -17,32 +17,15 @@ public class Player : MonoBehaviour
 
     private bool isGrounded;
 
-    [SerializeField] private Text HPText;
-
-    private int hp;
-
-    public int HP
-    {
-        get { return hp; }
-        set { hp = value;
-            HPText.text = value.ToString();
-        }
-    }
-
     PhotonView view;
 
     private void Start()
     {
         view = GetComponent<PhotonView>();
-        if (PhotonNetwork.PlayerList.Length == 1)
+        if(PhotonNetwork.PlayerList.Length == 1)
         {
-            HPText = FindObjectOfType<UI>().HPTextLeft;
+
         }
-        else
-        {
-            HPText = FindObjectOfType<UI>().HPTextRight;
-        }
-        HP = 100;
     }
 
     private void Update()
@@ -89,7 +72,6 @@ public class Player : MonoBehaviour
         foreach (Collider enemy in hitEnemies)
         {
             print("hit " + enemy.name);
-            enemy.GetComponent<Player>().HP -= attackDamage;
         }
     }
 
